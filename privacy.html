@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WallX · Privacy</title>
+<style>
+  :root{
+    --bg:#000000;--panel:#0e1218;--hair:rgba(255,255,255,0.08);--hair-strong:rgba(255,255,255,0.14);
+    --text:#f5f7fa;--muted:#8a8f98;--muted-2:#5f636b;--cyan:#22d3ee;
+    --grad-135:linear-gradient(135deg,#4f7cff 0%,#22d3ee 100%);
+    --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  nav{position:sticky;top:0;z-index:100;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:rgba(0,0,0,0.6);border-bottom:1px solid var(--hair)}
+  .nav-inner{max-width:1120px;margin:0 auto;height:52px;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:19px;letter-spacing:-0.01em;color:var(--text)}
+  .brand:hover{text-decoration:none}
+  .brand .logo{width:24px;height:24px;display:block}
+  .nav-links a{font-size:13px;color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--text);text-decoration:none}
+  .doc{padding:72px 0 90px}
+  .eyebrow{font-size:13px;font-weight:600;background:var(--grad-135);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;margin-bottom:12px}
+  h1{font-size:clamp(34px,6vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1.05}
+  .updated{margin-top:12px;color:var(--muted-2);font-size:13px}
+  .lead{margin-top:24px;font-size:18px;color:var(--muted)}
+  h2{margin-top:40px;font-size:22px;font-weight:600;letter-spacing:-0.01em}
+  p{margin-top:14px;color:#c7ccd4}
+  ul{margin-top:14px;padding-left:20px;color:#c7ccd4;display:flex;flex-direction:column;gap:8px}
+  strong{color:var(--text);font-weight:600}
+  .tldr{margin-top:28px;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:22px 24px}
+  .tldr h2{margin-top:0;font-size:16px;color:var(--cyan)}
+  .tldr p{margin-top:8px}
+  footer{border-top:1px solid var(--hair);padding:40px 0 72px;color:var(--muted-2)}
+  .foot-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot-brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:16px;color:var(--text)}
+  .foot-brand .logo{width:20px;height:20px}
+  .foot-links{display:flex;gap:22px;font-size:13px;flex-wrap:wrap}
+  .foot-links a{color:var(--muted)}
+  .foot-links a:hover{color:var(--text);text-decoration:none}
+  .copyright{max-width:1120px;margin:22px auto 0;padding:0 24px;font-size:12px}
+  @media print{nav{display:none}body{background:#000}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <svg class="logo" viewBox="0 0 100 100" fill="none">
+        <path d="M50 12 C 50 12 22 46 22 66 A 28 28 0 1 0 78 66 C 78 46 50 12 50 12 Z" stroke="#e9f6ff" stroke-width="7" stroke-linejoin="round" fill="none"/>
+        <path d="M34 60 C 30 68 31 77 38 82" stroke="#e9f6ff" stroke-width="7" stroke-linecap="round" fill="none"/>
+      </svg>
+      WallX
+    </a>
+    <div class="nav-links"><a href="index.html">&larr; Back to home</a></div>
+  </div>
+</nav>
+<main class="doc">
+  <div class="wrap">
+    <div class="eyebrow">Privacy</div>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 23 August 2026</p>
+    <div class="tldr">
+      <h2>The short version</h2>
+      <p>WallX collects nothing. The app runs entirely on your Mac, has no account, no analytics, and no ads. Your videos never leave your computer.</p>
+    </div>
+    <p class="lead">This policy explains what happens to your data when you use the WallX app and this website. Spoiler: almost nothing happens, because WallX isn't built to gather it.</p>
+    <h2>The WallX app</h2>
+    <p>WallX is a menu-bar app that runs locally on your Mac. It does not require an account or sign-in, and it does not send your usage, your settings, or your wallpapers anywhere.</p>
+    <ul>
+      <li><strong>Your videos stay local.</strong> The clips you set as wallpapers are read from your own machine and are never uploaded to us or anyone else.</li>
+      <li><strong>No analytics or telemetry.</strong> WallX does not track how you use it and does not build a profile of you.</li>
+      <li><strong>No ads.</strong> There are no advertisers and no ad networks involved.</li>
+      <li><strong>Automatic updates.</strong> To check for new versions, WallX uses the Sparkle update framework, which contacts GitHub to see whether a newer release exists. This request reveals only standard technical information (such as your IP address and app version) to GitHub as the file host, and is used solely to deliver updates.</li>
+    </ul>
+    <h2>This website</h2>
+    <p>This site is a static page with no accounts, no cookies, and no tracking scripts. It is hosted on Netlify, and app downloads are served from GitHub Releases. As part of delivering the page and download, those providers may automatically log standard technical data such as your IP address, browser type, and the time of the request. This is normal server logging handled by them as infrastructure providers, and WallX does not receive or use it.</p>
+    <h2>Links to other services</h2>
+    <p>WallX links out to GitHub, Discord, and X (Twitter). When you follow those links, you're subject to each service's own privacy policy — this policy does not cover them.</p>
+    <h2>Children</h2>
+    <p>WallX is not directed at children and does not knowingly collect any information from anyone, regardless of age.</p>
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, the updated version will be posted here with a new "last updated" date. Since WallX collects nothing, any changes are likely to be minor clarifications.</p>
+    <h2>Contact</h2>
+    <p>Questions about privacy or WallX in general? Open an issue on the <a href="https://github.com/UnxnownYT/WallX" target="_blank" rel="noopener">GitHub repository</a> and I'll be happy to help.</p>
+  </div>
+</main>
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <svg class="logo" viewBox="0 0 100 100" fill="none">
+        <path d="M50 12 C 50 12 22 46 22 66 A 28 28 0 1 0 78 66 C 78 46 50 12 50 12 Z" stroke="#e9f6ff" stroke-width="7" stroke-linejoin="round" fill="none"/>
+        <path d="M34 60 C 30 68 31 77 38 82" stroke="#e9f6ff" stroke-width="7" stroke-linecap="round" fill="none"/>
+      </svg>
+      WallX
+    </div>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#download">Download</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+  <div class="copyright">© 2026 WallX. Animated wallpapers for macOS. Made for Mac.</div>
+</footer>
+</body>
+</html>
