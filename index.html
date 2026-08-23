@@ -154,29 +154,42 @@
   .dock .app.d5{background:linear-gradient(160deg,#fbbf24,#d97706)}
 
   /* WallX menu-bar simulator */
-  .wx-trigger{background:none;border:none;padding:0;margin:0 3px;cursor:pointer;color:#cfe8ff;display:inline-flex;align-items:center;height:100%}
+  .wx-trigger{background:none;border:none;padding:0;margin:0 3px;cursor:pointer;color:#dbe9ff;display:inline-flex;align-items:center;height:100%;transition:color .15s}
   .wx-trigger svg{width:13px;height:13px;display:block}
   .wx-trigger:hover,.wx-trigger.active{color:#fff}
   .wx-panel{
-    position:absolute;top:31px;right:8px;z-index:6;width:216px;
-    background:rgba(28,30,34,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,0.12);border-radius:12px;
-    box-shadow:0 22px 54px -14px rgba(0,0,0,0.75);
-    padding:8px;color:#e8eaed;font-size:12.5px;
-    transform-origin:top right;animation:wxPop .16s ease;
+    position:absolute;top:33px;right:6px;z-index:6;width:254px;
+    background:rgba(38,39,43,0.64);
+    backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);
+    border:0.5px solid rgba(255,255,255,0.18);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,0.09) inset,0 26px 60px -16px rgba(0,0,0,0.82);
+    padding:10px;color:#f3f3f6;font-size:13px;letter-spacing:-0.01em;
+    transform-origin:top right;animation:wxPop .18s cubic-bezier(.2,.8,.2,1);
   }
-  @keyframes wxPop{from{opacity:0;transform:scale(.96) translateY(-4px)}to{opacity:1;transform:none}}
-  .wx-head{display:flex;align-items:center;gap:9px;padding:6px 8px 9px}
-  .wx-drop{width:22px;height:22px;color:#4fc3f7;flex:none}
-  .wx-title{font-weight:600;font-size:13px;line-height:1.15}
-  .wx-sub{font-size:11px;color:#9aa0a8}
-  .wx-now{display:flex;justify-content:space-between;gap:10px;padding:7px 8px;margin-bottom:4px;
-    border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);color:#9aa0a8}
-  .wx-now strong{color:#e8eaed;font-weight:600;text-align:right}
-  .wx-item{display:block;width:100%;text-align:left;background:none;border:none;color:#e8eaed;font:inherit;
-    padding:7px 8px;border-radius:7px;cursor:pointer;transition:background .15s}
-  .wx-item:hover{background:rgba(79,124,255,0.28)}
-  .wx-item.primary{color:#8fd0ff;font-weight:500}
+  .wx-panel::before{content:"";position:absolute;top:-6px;right:15px;width:11px;height:11px;
+    background:rgba(46,47,52,0.9);border-left:0.5px solid rgba(255,255,255,0.18);border-top:0.5px solid rgba(255,255,255,0.18);
+    border-radius:2px 0 0 0;transform:rotate(45deg)}
+  @keyframes wxPop{from{opacity:0;transform:scale(.95) translateY(-6px)}to{opacity:1;transform:none}}
+  .wx-toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 6px 8px}
+  .wx-status{flex:none;font-size:10.5px;font-weight:600;color:#63d68b;background:rgba(52,211,153,0.14);padding:3px 9px;border-radius:980px}
+  .wx-section-label{font-size:10.5px;font-weight:600;color:#8b8f98;text-transform:uppercase;letter-spacing:0.05em}
+  .wx-scenes{display:flex;flex-direction:column;gap:2px}
+  .wx-scene{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;color:#f3f3f6;font:inherit;padding:6px;border-radius:9px;cursor:pointer;transition:background .15s}
+  .wx-scene:hover{background:rgba(255,255,255,0.08)}
+  .wx-scene.is-active{background:rgba(79,124,255,0.24)}
+  .wx-thumb{width:46px;height:29px;border-radius:6px;flex:none;box-shadow:0 1px 3px rgba(0,0,0,0.45),inset 0 0 0 0.5px rgba(255,255,255,0.14)}
+  .t-night{background:radial-gradient(120% 130% at 72% 22%,#22467f,#0a1330 72%)}
+  .t-rain{background:linear-gradient(150deg,#1b3a5c,#2f7fa0)}
+  .wx-scene-name{flex:1;font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wx-check{width:16px;height:16px;flex:none;color:#5aa9ff;opacity:0;transition:opacity .15s}
+  .wx-scene.is-active .wx-check{opacity:1}
+  .wx-check svg{width:16px;height:16px;display:block}
+  .wx-controls{display:flex;gap:6px;margin-top:9px;padding-top:10px;border-top:0.5px solid rgba(255,255,255,0.1)}
+  .wx-ctrl{flex:1;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.09);color:#eaeaef;border-radius:9px;padding:8px;cursor:pointer;transition:background .15s,transform .08s}
+  .wx-ctrl:hover{background:rgba(255,255,255,0.15)}
+  .wx-ctrl:active{transform:scale(.95)}
+  .wx-ctrl svg{width:16px;height:16px;display:block}
+  .wx-ctrl svg[hidden]{display:none}
 
   /* lock screen */
   .lock{aspect-ratio:16/10}
@@ -392,15 +405,35 @@
       </div>
 
       <div class="wx-panel" id="wxPanel" hidden>
-        <div class="wx-head">
-          <svg class="wx-drop" viewBox="0 0 100 100" fill="none"><path d="M50 12 C 50 12 22 46 22 66 A 28 28 0 1 0 78 66 C 78 46 50 12 50 12 Z" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/><path d="M34 60 C 30 68 31 77 38 82" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
-          <div><div class="wx-title">WallX</div><div class="wx-sub">Live Wallpaper</div></div>
+        <div class="wx-toprow">
+          <span class="wx-section-label">Wallpaper</span>
+          <span class="wx-status" id="wxStatus">Playing</span>
         </div>
-        <div class="wx-now"><span>Now playing</span><strong id="wxScene">Night Sky</strong></div>
-        <button class="wx-item" id="wxPlay">Pause</button>
-        <button class="wx-item" id="wxMute">Unmute</button>
-        <button class="wx-item primary" id="wxChoose">Choose Video&#8230;</button>
-        <button class="wx-item" id="wxFull">Full Screen</button>
+        <div class="wx-scenes">
+          <button class="wx-scene is-active" data-idx="0">
+            <span class="wx-thumb t-night"></span>
+            <span class="wx-scene-name">Night Sky</span>
+            <span class="wx-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button class="wx-scene" data-idx="1">
+            <span class="wx-thumb t-rain"></span>
+            <span class="wx-scene-name">Raindrops on Window</span>
+            <span class="wx-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </div>
+        <div class="wx-controls">
+          <button class="wx-ctrl" id="wxPlay" aria-label="Play or pause">
+            <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" hidden><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <button class="wx-ctrl" id="wxMute" aria-label="Mute or unmute">
+            <svg class="ic-muted" viewBox="0 0 24 24" fill="currentColor"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg class="ic-sound" viewBox="0 0 24 24" fill="currentColor" hidden><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="wx-ctrl" id="wxFull" aria-label="Full screen">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
       </div>
 
       <div class="dock">
@@ -608,31 +641,40 @@ document.querySelectorAll('video:not(#heroVid)').forEach(v=>vio.observe(v));
   const trigger=document.getElementById('wxTrigger');
   const panel=document.getElementById('wxPanel');
   if(!vid||!trigger||!panel) return;
-  const sceneEl=document.getElementById('wxScene');
+  const statusEl=document.getElementById('wxStatus');
   const playBtn=document.getElementById('wxPlay');
   const muteBtn=document.getElementById('wxMute');
+  const sceneBtns=panel.querySelectorAll('.wx-scene');
   const base='https://unxnownyt.github.io/videosandappicons/';
-  const scenes=[{name:'Night Sky',src:base+'Night%20Sky.mov'},{name:'Raindrops on Window',src:base+'Raindrops%20on%20Window.mp4'}];
-  let idx=0;
+  const scenes=[base+'Night%20Sky.mov', base+'Raindrops%20on%20Window.mp4'];
 
   function setOpen(open){ panel.hidden=!open; trigger.classList.toggle('active',open); trigger.setAttribute('aria-expanded',open); }
   trigger.addEventListener('click',(e)=>{ e.stopPropagation(); setOpen(panel.hidden); });
   document.addEventListener('click',(e)=>{ if(!panel.hidden && !panel.contains(e.target) && !trigger.contains(e.target)) setOpen(false); });
   document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') setOpen(false); });
 
+  function sync(){
+    playBtn.querySelector('.ic-pause').hidden=vid.paused;
+    playBtn.querySelector('.ic-play').hidden=!vid.paused;
+    muteBtn.querySelector('.ic-muted').hidden=!vid.muted;
+    muteBtn.querySelector('.ic-sound').hidden=vid.muted;
+    statusEl.textContent=vid.paused?'Paused':'Playing';
+    statusEl.style.color=vid.paused?'#e0a86b':'#63d68b';
+    statusEl.style.background=vid.paused?'rgba(224,168,107,0.14)':'rgba(52,211,153,0.14)';
+  }
   playBtn.addEventListener('click',()=>{ if(vid.paused) vid.play(); else vid.pause(); });
-  vid.addEventListener('play',()=>playBtn.textContent='Pause');
-  vid.addEventListener('pause',()=>playBtn.textContent='Play');
+  muteBtn.addEventListener('click',()=>{ vid.muted=!vid.muted; sync(); });
+  vid.addEventListener('play',sync);
+  vid.addEventListener('pause',sync);
+  vid.addEventListener('click',()=>{ if(vid.paused) vid.play(); else vid.pause(); });
 
-  muteBtn.addEventListener('click',()=>{ vid.muted=!vid.muted; muteBtn.textContent=vid.muted?'Unmute':'Mute'; });
-
-  document.getElementById('wxChoose').addEventListener('click',()=>{
-    idx=(idx+1)%scenes.length;
-    const s=scenes[idx];
+  sceneBtns.forEach((btn)=>btn.addEventListener('click',()=>{
+    const i=+btn.dataset.idx;
+    sceneBtns.forEach((b,k)=>b.classList.toggle('is-active',k===i));
     const wasMuted=vid.muted;
-    vid.src=s.src; vid.muted=wasMuted; const p=vid.play(); if(p&&p.catch){p.catch(()=>{});}
-    sceneEl.textContent=s.name;
-  });
+    vid.src=scenes[i]; vid.muted=wasMuted; const p=vid.play(); if(p&&p.catch){p.catch(()=>{});}
+    sync();
+  }));
 
   document.getElementById('wxFull').addEventListener('click',()=>{
     const el=document.getElementById('wxScreen');
@@ -642,7 +684,7 @@ document.querySelectorAll('video:not(#heroVid)').forEach(v=>vio.observe(v));
     setOpen(false);
   });
 
-  vid.addEventListener('click',()=>{ if(vid.paused) vid.play(); else vid.pause(); });
+  sync();
 })();
 </script>
 </body>
