@@ -153,6 +153,31 @@
   .dock .app.d4{background:linear-gradient(160deg,#a78bfa,#6d28d9)}
   .dock .app.d5{background:linear-gradient(160deg,#fbbf24,#d97706)}
 
+  /* WallX menu-bar simulator */
+  .wx-trigger{background:none;border:none;padding:0;margin:0 3px;cursor:pointer;color:#cfe8ff;display:inline-flex;align-items:center;height:100%}
+  .wx-trigger svg{width:13px;height:13px;display:block}
+  .wx-trigger:hover,.wx-trigger.active{color:#fff}
+  .wx-panel{
+    position:absolute;top:31px;right:8px;z-index:6;width:216px;
+    background:rgba(28,30,34,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.12);border-radius:12px;
+    box-shadow:0 22px 54px -14px rgba(0,0,0,0.75);
+    padding:8px;color:#e8eaed;font-size:12.5px;
+    transform-origin:top right;animation:wxPop .16s ease;
+  }
+  @keyframes wxPop{from{opacity:0;transform:scale(.96) translateY(-4px)}to{opacity:1;transform:none}}
+  .wx-head{display:flex;align-items:center;gap:9px;padding:6px 8px 9px}
+  .wx-drop{width:22px;height:22px;color:#4fc3f7;flex:none}
+  .wx-title{font-weight:600;font-size:13px;line-height:1.15}
+  .wx-sub{font-size:11px;color:#9aa0a8}
+  .wx-now{display:flex;justify-content:space-between;gap:10px;padding:7px 8px;margin-bottom:4px;
+    border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);color:#9aa0a8}
+  .wx-now strong{color:#e8eaed;font-weight:600;text-align:right}
+  .wx-item{display:block;width:100%;text-align:left;background:none;border:none;color:#e8eaed;font:inherit;
+    padding:7px 8px;border-radius:7px;cursor:pointer;transition:background .15s}
+  .wx-item:hover{background:rgba(79,124,255,0.28)}
+  .wx-item.primary{color:#8fd0ff;font-weight:500}
+
   /* lock screen */
   .lock{aspect-ratio:16/10}
   .lock-ui{
@@ -216,7 +241,6 @@
   /* gallery */
   .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:52px auto 0;max-width:760px}
   @media(max-width:420px){.gallery{grid-template-columns:1fr}}
-
   .tile{
     position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;
     border:1px solid var(--hair);cursor:default;
@@ -349,15 +373,39 @@
     </a>
     <a class="btn btn-ghost" href="#gallery">See it in motion</a>
   </div>
+  <p class="micro">Free · Requires macOS 13 Ventura or later · Apple silicon &amp; Intel</p>
   <p class="micro" style="margin-top:9px;opacity:.92">First launch: right-click <strong style="color:var(--text);font-weight:600">WallX</strong> and choose <strong style="color:var(--text);font-weight:600">Open</strong> — macOS only asks once. <a href="https://github.com/UnxnownYT/WallX#installing-wallx" style="color:var(--cyan)" target="_blank" rel="noopener">Install steps ↗</a></p>
 
   <!-- Hero desktop mockup -->
   <div class="hero-stage reveal">
-    <div class="screen desktop">
-      <video autoplay loop muted playsinline controls src="https://unxnownyt.github.io/videosandappicons/Night%20Sky.mov"></video>
+    <div class="screen desktop" id="wxScreen">
+      <video id="heroVid" autoplay loop muted playsinline src="https://unxnownyt.github.io/videosandappicons/Night%20Sky.mov"></video>
       <div class="menubar">
         <div class="left"><span class="apple">&#63743;</span><span>Finder</span><span>File</span><span>Edit</span><span>View</span></div>
-        <div class="right"><span>&#9776;</span><span>&#128266;</span><span>&#128246;</span><span>Sat 9:41 AM</span></div>
+        <div class="right">
+          <span>&#9776;</span><span>&#128246;</span>
+          <button class="wx-trigger" id="wxTrigger" aria-label="Open WallX" aria-expanded="false">
+            <svg viewBox="0 0 100 100" fill="none"><path d="M50 12 C 50 12 22 46 22 66 A 28 28 0 1 0 78 66 C 78 46 50 12 50 12 Z" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/><path d="M34 60 C 30 68 31 77 38 82" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
+          </button>
+          <span>100% &#128267;</span><span>Sun 9:41 AM</span>
+        </div>
+      </div>
+
+      <div class="wx-panel" id="wxPanel" hidden>
+        <div class="wx-head">
+          <svg class="wx-drop" viewBox="0 0 100 100" fill="none"><path d="M50 12 C 50 12 22 46 22 66 A 28 28 0 1 0 78 66 C 78 46 50 12 50 12 Z" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/><path d="M34 60 C 30 68 31 77 38 82" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
+          <div><div class="wx-title">WallX</div><div class="wx-sub">Live Wallpaper</div></div>
+        </div>
+        <div class="wx-now"><span>Now playing</span><strong id="wxScene">Night Sky</strong></div>
+        <button class="wx-item" id="wxPlay">Pause</button>
+        <button class="wx-item" id="wxMute">Unmute</button>
+        <button class="wx-item primary" id="wxChoose">Choose Video&#8230;</button>
+        <button class="wx-item" id="wxFull">Full Screen</button>
+      </div>
+
+      <div class="dock">
+        <div class="app d1"></div><div class="app d2"></div><div class="app d3"></div>
+        <div class="app d4"></div><div class="app d5"></div><div class="app"></div>
       </div>
     </div>
   </div>
@@ -506,7 +554,7 @@
       Download for Mac
     </a>
   </div>
-  <p class="micro" style="color:var(--muted-2)">Free · macOS 13 Ventura or later</p>
+  <p class="micro" style="color:var(--muted-2)">Free · macOS 13 Ventura or later · First launch: right-click → Open</p>
 </section>
 
 <footer>
@@ -533,7 +581,7 @@
         <a href="https://x.com/u_nxnown" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       </div>
     </div>
-    <div class="copyright">© 2026 WallX. Animated wallpapers for macOS. Made for Mac. Made by Unxnown.</div>
+    <div class="copyright">© 2026 WallX. Animated wallpapers for macOS. Made for Mac.</div>
   </div>
 </footer>
 
@@ -543,6 +591,59 @@ const io=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
 },{threshold:0.14, rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ---------- Play videos only while visible (avoids browser limit on concurrent video) ----------
+const vio=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    const v=e.target;
+    if(e.isIntersecting){ const p=v.play(); if(p&&p.catch){p.catch(()=>{});} }
+    else { v.pause(); }
+  });
+},{threshold:0.25});
+document.querySelectorAll('video:not(#heroVid)').forEach(v=>vio.observe(v));
+
+// ---------- WallX menu-bar simulator ----------
+(function(){
+  const vid=document.getElementById('heroVid');
+  const trigger=document.getElementById('wxTrigger');
+  const panel=document.getElementById('wxPanel');
+  if(!vid||!trigger||!panel) return;
+  const sceneEl=document.getElementById('wxScene');
+  const playBtn=document.getElementById('wxPlay');
+  const muteBtn=document.getElementById('wxMute');
+  const base='https://unxnownyt.github.io/videosandappicons/';
+  const scenes=[{name:'Night Sky',src:base+'Night%20Sky.mov'},{name:'Raindrops on Window',src:base+'Raindrops%20on%20Window.mp4'}];
+  let idx=0;
+
+  function setOpen(open){ panel.hidden=!open; trigger.classList.toggle('active',open); trigger.setAttribute('aria-expanded',open); }
+  trigger.addEventListener('click',(e)=>{ e.stopPropagation(); setOpen(panel.hidden); });
+  document.addEventListener('click',(e)=>{ if(!panel.hidden && !panel.contains(e.target) && !trigger.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') setOpen(false); });
+
+  playBtn.addEventListener('click',()=>{ if(vid.paused) vid.play(); else vid.pause(); });
+  vid.addEventListener('play',()=>playBtn.textContent='Pause');
+  vid.addEventListener('pause',()=>playBtn.textContent='Play');
+
+  muteBtn.addEventListener('click',()=>{ vid.muted=!vid.muted; muteBtn.textContent=vid.muted?'Unmute':'Mute'; });
+
+  document.getElementById('wxChoose').addEventListener('click',()=>{
+    idx=(idx+1)%scenes.length;
+    const s=scenes[idx];
+    const wasMuted=vid.muted;
+    vid.src=s.src; vid.muted=wasMuted; const p=vid.play(); if(p&&p.catch){p.catch(()=>{});}
+    sceneEl.textContent=s.name;
+  });
+
+  document.getElementById('wxFull').addEventListener('click',()=>{
+    const el=document.getElementById('wxScreen');
+    if(el.requestFullscreen) el.requestFullscreen();
+    else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    else if(vid.requestFullscreen) vid.requestFullscreen();
+    setOpen(false);
+  });
+
+  vid.addEventListener('click',()=>{ if(vid.paused) vid.play(); else vid.pause(); });
+})();
 </script>
 </body>
 </html>
